@@ -6,23 +6,38 @@
 <style>
   body {
     font-family: Georgia, serif;
-    background: #0e0e0e;
+    background: #0e0e0e url('foto.jpg') no-repeat center/cover;
     color: #f5f5dc;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     height: 100vh;
+    margin: 0;
+  }
+  h1 {
+    font-size: 3em;
+    text-align: center;
+    margin-bottom: 30px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+    letter-spacing: 2px;
   }
   .box {
     max-width: 600px;
+    width: 100%;
     padding: 30px;
     border: 2px solid #bfa76f;
     background: #1b1b1b;
+    box-sizing: border-box;
+  }
+  #question {
+    width: 100%;
   }
   input {
     width: 100%;
     padding: 10px;
     margin-top: 10px;
+    box-sizing: border-box;
   }
   button {
     margin-top: 15px;
@@ -32,10 +47,14 @@
     border: none;
     font-weight: bold;
     cursor: pointer;
+    box-sizing: border-box;
   }
 </style>
 </head>
 <body>
+
+<h1>Ohnivy Pohár přilétá do Homolí, dokážeš mě chytit? Pokud zvládněš všechny otázky, získáš tajný dar, který je skrytý v poháru. Čti nápovědy.</h1>
+
 
 <div class="box">
   <h2 id="question"></h2>
@@ -50,7 +69,6 @@ const quiz = [
     q: "Kolik let bylo Nicholasi Flamelovi, když se rozhodl zničit Kámen mudrců?",
     a: "665"
   },
-  /*
   {
     q: "Jak se jmenuje firma, ve které pracuje Vernon Dursley?",
     a: "grunnings"
@@ -60,7 +78,7 @@ const quiz = [
     a: "14 srpců"
   },
   {
-    q: "Jaká je maximální rychlost, které je schopen dosáhnout Kulový blesk?",
+    q: "Jaká je maximální rychlost, které je schopen dosáhnout Kulový blesk? Nápověda číslo v km/hod",
     a: "240 km/hod"
   },
   {
@@ -111,7 +129,6 @@ const quiz = [
     q: "Kdo řekl: „Líbí se jim jen proto, že je slavný. Ani by se po něm neohlédly, kdyby neuměl tu Vranskou flintu.” Napověda: jen křestní jméno",
     a: "Hermiona"
   },
-  */
   {
     q: "Jaké číslo musíte vytočit, pokud se chcete dostat na Ministerstvo kouzel skrze veřejný vstup přes červenou telefonní budku?",
     a: "62442"
