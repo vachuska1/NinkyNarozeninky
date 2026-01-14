@@ -62,7 +62,9 @@
   <button onclick="check()">Potvrdit</button>
   <p id="msg"></p>
 </div>
-
+<footer style="position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%); text-align: center; color: #bfa76f; font-size: 0.9em;">
+  Vytvořil: Agronom Vachuška
+</footer>
 <script>
 const quiz = [
   {
@@ -163,9 +165,9 @@ function check() {
         <h2>Dokázal jsi to.</h2>
         <p>Magicky chráněný svitek je připraven.</p>
         <a href="Ohnivy_Pohar.zip" download>
-          <button>Stáhnout zaheslovaný ZIP</button>
+          <button>Stáhnout zaheslovaný svitek ve formátu ZIP</button>
         </a>
-        <p><em>Soubor je chráněn heslem — použij číslo, které jsi vytočil(a) v poslední otázce.</em></p>
+        <p><em>Soubor je chráněn heslem — použij číslo, které jsi odpověděla v poslední otázce.</em></p>
       `;
     }
   } else {
