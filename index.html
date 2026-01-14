@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+<meta charset="UTF-8">
+<title>Zkouška kouzelnického mistra</title>
+<style>
+  body {
+    font-family: Georgia, serif;
+    background: #0e0e0e;
+    color: #f5f5dc;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  }
+  .box {
+    max-width: 600px;
+    padding: 30px;
+    border: 2px solid #bfa76f;
+    background: #1b1b1b;
+  }
+  input {
+    width: 100%;
+    padding: 10px;
+    margin-top: 10px;
+  }
+  button {
+    margin-top: 15px;
+    padding: 10px;
+    width: 100%;
+    background: #bfa76f;
+    border: none;
+    font-weight: bold;
+    cursor: pointer;
+  }
+</style>
+</head>
+<body>
+
+<div class="box">
+  <h2 id="question"></h2>
+  <input id="answer" placeholder="Odpověď">
+  <button onclick="check()">Potvrdit</button>
+  <p id="msg"></p>
+</div>
+
+<script>
+const quiz = [
+  {
+    q: "Kolik let bylo Nicholasi Flamelovi, když se rozhodl zničit Kámen mudrců?",
+    a: "665"
+  },
+  {
+    q: "Jak se jmenuje firma, ve které pracuje Vernon Dursley?",
+    a: "grunnings"
+  },
+  {
+    q: "Kolik by Harryho stála cesta Záchranným autobusem s horkou čokoládou?",
+    a: "14 srpců"
+  },
+  {
+    q: "Jaká je maximální rychlost, které je schopen dosáhnout Kulový blesk?",
+    a: "240 km/hod"
+  },
+  {
+    q: "Kdo během zápasu Mistrovství světa ve famfrpálu mezi Irskem a Bulharskem střelil první irský gól?",
+    a: "Troy"
+  },
+{
+    q: "Jakou barvu má lektvar, který musí Brumbál vypít, když se s Harrym vydá do jeskyně hledat viteál?",
+    a: "Zelenou"
+  },
+  {
+    q: "U Komnaty nejvyšší potřeby visí tapisérie, na které je vyobrazen...",
+    a: "Barnabáš Blouznivý"
+  },
+  {
+    q: "Do které koleje byla zařazena Ufňukaná Uršula?",
+    a: "Havraspár"
+  },
+  {
+    q: "Kolik je v Bradavicích schodišť?",
+    a: "142"
+  },
+  {
+    q: "Na konci Kamene mudrců vyhrál Nebelvír školní pohár. Byl o pouhých 10 bodů před Zmijozelem. Jaké bylo finální skóre? Napověda: XXXXX : YYYYY",
+    a: "482 : 472"
+  }, 
+  {
+    q: "Ve kterém roce zemřeli Lily a James Potterovi?",
+    a: "1981"
+  },
+  {
+    q: "V jakém pořadí jsou uvedeni Pobertové ve svém plánku? Napověda: Jméno, Jméno, ........",
+    a: "Náměsíčník, Červíček, Tichošlápek, Dvanácterák"
+  },
+  {
+    q: "Který díl Harryho Pottera začíná kapitolou Soví pošta?",
+    a: "Vězeň z Azkabanu"
+  },
+  {
+    q: "Kde zemřel Fred Weasley?",
+    a: "Před Komnatou nejvyšší potřeby"
+  },
+  {
+    q: "Do které koleje patří Terry Boot?",
+    a: "Havraspár"
+  },
+  {
+    q: "Kdo řekl: „Líbí se jim jen proto, že je slavný. Ani by se po něm neohlédly, kdyby neuměl tu Vranskou flintu.” Napověda: jen křestní jméno",
+    a: "Hermiona"
+  },
+  {
+    q: "Jaké číslo musíte vytočit, pokud se chcete dostat na Ministerstvo kouzel skrze veřejný vstup přes červenou telefonní budku?",
+    a: "62442"
+  }
+];
+
+let i = 0;
+
+document.getElementById("question").innerText = quiz[i].q;
+
+function normalize(text) {
+  return text.toLowerCase().trim();
+}
+
+function check() {
+  const raw = document.getElementById("answer").value;
+  const input = normalize(raw);
+  const correct = normalize(quiz[i].a);
+  // if the correct answer contains any digits, compare only digits so formats like 6-2-4-4-2 match 62442
+  const hasDigits = /\d/.test(correct);
+  const equal = hasDigits
+    ? input.replace(/\D/g, '') === correct.replace(/\D/g, '')
+    : input === correct;
+  if (equal) {
+    i++;
+    if (i < quiz.length) {
+      document.getElementById("question").innerText = quiz[i].q;
+      document.getElementById("answer").value = "";
+      document.getElementById("msg").innerText = "";
+    } else {
+      document.querySelector(".box").innerHTML = `
+        <h2>Dokázal jsi to.</h2>
+        <p>Magicky chráněný svitek je připraven.</p>
+        <a href="Ohnivy_Pohar.zip" download>
+          <button>Stáhnout zaheslovaný ZIP</button>
+        </a>
+        <p><em>Soubor je chráněn heslem — použij číslo, které jsi vytočil(a) v poslední otázce.</em></p>
+      `;
+    }
+  } else {
+    document.getElementById("msg").innerText = "Špatně. Zkus znovu.";
+  }
+}
+</script>
+
+</body>
+</html>
